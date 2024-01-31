@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.util.Date;
 
@@ -14,6 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@DynamicUpdate
 public class ReceiptModel {
 
     @Id
@@ -23,7 +25,7 @@ public class ReceiptModel {
     private Date date;
     private String category;
     private String description;
-    private int price;
+    private Integer price;
     private String owner;
 
 }

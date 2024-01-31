@@ -26,7 +26,12 @@ public class DucklingController {
     }
 
     @PatchMapping("/{id}")
-    public void updateReceipt(@PathVariable Long id){
-        ducklingService.update(id);
+    public void updateReceipt(@PathVariable Long id, @RequestBody ReceiptModel receiptModel){
+        ducklingService.update(id, receiptModel);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteReceipt(@PathVariable Long id){
+        ducklingService.delete(id);
     }
 }

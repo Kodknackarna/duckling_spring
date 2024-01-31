@@ -4,10 +4,8 @@ import org.example.duckling_spring.model.ReceiptModel;
 import org.example.duckling_spring.repository.DucklingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class DucklingService {
@@ -31,13 +29,31 @@ public class DucklingService {
         return "success";
     }
 
-    public void delete(ReceiptModel receiptModel){
+    public void delete(Long id){
+        ReceiptModel receiptModel = ducklingRepository.findReceiptModelById(id);
         ducklingRepository.delete(receiptModel);
     }
 
-    public void update(ReceiptModel receiptModel, Long id){
-        ducklingRepository.findById(id); //upsert partial update
-        ducklingRepository.save(receiptModel);
+    public ReceiptModel update(Long id, ReceiptModel newReceipt){
+        ReceiptModel receiptModel = ducklingRepository.findReceiptModelById(id);
+        if (newReceipt.getTitle() != null) {
+            receiptModel.setTitle(newReceipt.getTitle());
+        }
+        if (newReceipt.getDate() != null) {
+            receiptModel.setDate(newReceipt.getDate());
+        }
+        if (newReceipt.getCategory() != null) {
+            receiptModel.setCategory(newReceipt.getCategory());
+        }
+        if (newReceipt.getDescription() != null) {
+            receiptModel.setDescription(newReceipt.getDescription());
+        }
+        if (newReceipt.getPrice() != null) {
+            receiptModel.setPrice(newReceipt.getPrice());
+        }
+        if(newReceipt.getOwner()!=null) {
+            receiptModel.setOwner(newReceipt.getOwner());
+        }
+        return ducklingRepository.save(receiptModel);
     }
-
 }

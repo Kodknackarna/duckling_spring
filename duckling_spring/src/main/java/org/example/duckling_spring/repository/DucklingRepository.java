@@ -9,5 +9,5 @@ public interface DucklingRepository extends JpaRepository<ReceiptModel, Long> {
 
     ReceiptModel findReceiptModelByTitle(String title);
 
-    ReceiptModel updateReceiptModelById(Long id);
+    ReceiptModel findReceiptModelById(Long id);
 }
